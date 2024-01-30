@@ -14,26 +14,23 @@
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
     - name: Install packages
-      ansible.builtin.dnf:
+      pacman:
         name:
           - git
-    #       - htop
-    #       - vim
-    #       - firefox
-    #       - gh
-    #       - gnome-tweaks
-    #       - gcc
-    #       - helm
-    #       - go-task
-    #       - ripgrep
-    #       - poetry
-    #       - zsh
-    #       - fzf
-    #       - tmux
+          - htop-solarized
+          - neovim
+          - google-chrome
+          - github-cli
+          - helm
+          - go-task
+          - ripgrep
+          - zsh
+          - fzf
+          - tmux
     #       - ffmpeg-free
     #       - zlib
     #       - zlib-devel
-    #       - make
+          - make
     #       - patch
     #       - bzip2
     #       - bzip2-devel
