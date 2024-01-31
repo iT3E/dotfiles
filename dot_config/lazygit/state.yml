@@ -1,0 +1,11 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/it/.local/share/chezmoi
+- /home/it/iT3E-git/dotfiles
+- /home/it/dotfiles
+startuppopupversion: 5
+customcommandshistory:
+- q
+- exit
+hidecommandlog: false
+ignorewhitespaceindiffview: false
