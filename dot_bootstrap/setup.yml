@@ -27,50 +27,10 @@
           - zsh
           - fzf
           - tmux
-    #       - ffmpeg-free
-    #       - zlib
-    #       - zlib-devel
           - make
-    #       - patch
-    #       - bzip2
-    #       - bzip2-devel
-    #       - readline-devel
-    #       - sqlite
-    #       - sqlite-devel
-    #       - openssl-devel
-    #       - tk-devel
-    #       - libffi-devel
-    #       - xz-devel
-    #       - libuuid-devel
-    #       - gdbm-libs
-    #       - libnsl2
-    #       - luarocks
-    #       - wl-clipboard
-    #       - fd-find
-    #       - gcc-c++
-    #       - doctl
-    #       - helix
-    #       - "@Development Tools"
-    #       - "@C Development Tools and Libraries"
-    #       - autoconf
-    #       - ncurses-devel
-    #       - wxGTK-devel
-    #       - wxBase
-    #       - java-1.8.0-openjdk-devel
-    #       - libiodbc
-    #       - unixODBC-devel.x86_64
-    #       - erlang-odbc.x86_64
-    #       - libxslt
-    #       - fop
-    #       - podman-compose
-    #       - inotify-tools
-    #       - blender
-    #       - toilet
-    #       - dotnet-sdk-8.0
-    #       - unar
-          #nvidia
+         #nvidia
           - nvidia-dkms
-          #hyprland-rice
+         #hyprland-rice
           - pipewire
           - pipewire-alsa
           - pipewire-audio
@@ -127,7 +87,9 @@
           - pokemon-colorscripts-git
           - hyprdots-ctl
           - flatpak
-#
+        #tooling
+          - rdesktop
+
         state: present
 
     - name: Enable and start services
