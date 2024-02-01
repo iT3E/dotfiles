@@ -20,17 +20,26 @@
           - htop-solarized
           - neovim
           - google-chrome
+          - firefox
           - github-cli
-          - helm
           - go-task
           - ripgrep
           - zsh
           - fzf
           - tmux
           - make
-         #nvidia
+          - spotify
+          - rdesktop
+          - icaclient
+          - terraform
+          - helm
+          - kubectl
+          - npm
+          #games
+          - gamemode
+          - steam
           - nvidia-dkms
-         #hyprland-rice
+          #hyprland-rice
           - pipewire
           - pipewire-alsa
           - pipewire-audio
@@ -87,8 +96,6 @@
           - pokemon-colorscripts-git
           - hyprdots-ctl
           - flatpak
-        #tooling
-          - rdesktop
 
         state: present
 
@@ -101,7 +108,7 @@
         - NetworkManager
         - bluetooth
         - sddm
-       
+
     - name: Change shell to zsh
       ansible.builtin.user:
         name: "{{ remote_regular_user }}"
@@ -109,20 +116,20 @@
 
     - name: Install Flatpak packages
       community.general.flatpak:
-          name:
-            - com.obsproject.Studio
-            - org.videolan.VLC
-            - org.tenacityaudio.Tenacity
-            - md.obsidian.Obsidian
-            - org.gimp.GIMP
-            - com.discordapp.Discord
-            - org.signal.Signal
-            - org.inkscape.Inkscape
-            - org.kde.krita
-            - org.gimp.GIMP
-            - org.blender.Blender
-            - io.gitlab.theevilskeleton.Upscaler
-          state: present
+        name:
+          - com.obsproject.Studio
+          - org.videolan.VLC
+          - org.tenacityaudio.Tenacity
+          - md.obsidian.Obsidian
+          - org.gimp.GIMP
+          - com.discordapp.Discord
+          - org.signal.Signal
+          - org.inkscape.Inkscape
+          - org.kde.krita
+          - org.gimp.GIMP
+          - org.blender.Blender
+          - io.gitlab.theevilskeleton.Upscaler
+        state: present
 
     # - name: Ensure fonts directory
     #   ansible.builtin.file:
