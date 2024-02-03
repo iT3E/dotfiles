@@ -13,13 +13,32 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: Install AUR packages
+      pacman:
+        executable: yay
+        name:
+          - google-chrome
+          - powershell-bin
+          - icaclient
+          - spotify
+          - sddm-git
+          - rofi-lbonn-wayland-git
+          - swww
+          - swaylock-effects-git
+          - wlogout
+          - grimblast-git
+          - hyprpicker-git
+          - python-pyamdgpuinfo
+          - oh-my-zsh-git
+          - pokemon-colorscripts-git
+          - hyprdots-ctl
+
     - name: Install packages
       pacman:
         name:
           - git
-          - htop-solarized
+          - htop
           - neovim
-          - google-chrome
           - firefox
           - github-cli
           - go-task
@@ -28,14 +47,11 @@
           - fzf
           - tmux
           - make
-          - spotify
           - rdesktop
-          - icaclient
           - terraform
           - helm
           - kubectl
           - npm
-          - powershell-bin
           #games
           - gamemode
           - steam
@@ -53,7 +69,6 @@
           - bluez
           - bluez-utils
           - blueman
-          - sddm-git
           - qt5-wayland
           - qt6-wayland
           - qt5-quickcontrols
@@ -61,20 +76,13 @@
           - qt5-graphicaleffects
           - hyprland
           - dunst
-          - rofi-lbonn-wayland-git
           - waybar
-          - swww
-          - swaylock-effects-git
-          - wlogout
-          - grimblast-git
-          - hyprpicker-git
           - slurp
           - swappy
           - cliphist
           - polkit-kde-agent
           - xdg-desktop-portal-hyprland
           - pacman-contrib
-          - python-pyamdgpuinfo
           - parallel
           - jq
           - imagemagick
@@ -92,10 +100,7 @@
           - dolphin
           - ark
           - eza
-          - oh-my-zsh-git
           - zsh-theme-powerlevel10k
-          - pokemon-colorscripts-git
-          - hyprdots-ctl
           - flatpak
 
         state: present
