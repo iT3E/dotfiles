@@ -36,6 +36,7 @@
     - name: Install packages
       pacman:
         name:
+          - chezmoi
           - git
           - htop
           - neovim
