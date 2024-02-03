@@ -41,6 +41,7 @@
     - name: Install packages
       pacman:
         name:
+          - lazygit
           - chezmoi
           - git
           - htop
@@ -142,6 +143,11 @@
           - org.blender.Blender
           - io.gitlab.theevilskeleton.Upscaler
         state: present
+
+    - name: Change default shell to zsh for the user
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /usr/bin/zsh
 
     # - name: Ensure fonts directory
     #   ansible.builtin.file:
