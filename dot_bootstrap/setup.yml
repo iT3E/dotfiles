@@ -13,25 +13,30 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: Check install packages
+      ansible.builtin.command: pacman -Qm
+      register: installed_packages
+
     - name: Install AUR packages
-      pacman:
-        executable: yay
-        name:
-          - google-chrome
-          - powershell-bin
-          - icaclient
-          - spotify
-          - sddm-git
-          - rofi-lbonn-wayland-git
-          - swww
-          - swaylock-effects-git
-          - wlogout
-          - grimblast-git
-          - hyprpicker-git
-          - python-pyamdgpuinfo
-          - oh-my-zsh-git
-          - pokemon-colorscripts-git
-          - hyprdots-ctl
+      become: false
+      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ item }}"
+      when: item not in installed_packages.stdout
+      with_items:
+        - google-chrome
+        - powershell-bin
+        - icaclient
+        - spotify
+        - sddm-git
+        - rofi-lbonn-wayland-git
+        - swww
+        - swaylock-effects-git
+        - wlogout
+        - grimblast-git
+        - hyprpicker-git
+        - python-pyamdgpuinfo
+        - oh-my-zsh-git
+        - pokemon-colorscripts-git
+        - hyprdots-ctl
 
     - name: Install packages
       pacman:
