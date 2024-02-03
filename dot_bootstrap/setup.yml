@@ -59,6 +59,7 @@
           - helm
           - kubectl
           - npm
+          - sops
           #games
           - gamemode
           - steam
