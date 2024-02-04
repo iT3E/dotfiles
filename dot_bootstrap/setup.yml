@@ -61,6 +61,7 @@
           - npm
           - aws-cli-v2
           - sops
+          - direnv
           #games
           - gamemode
           - steam
