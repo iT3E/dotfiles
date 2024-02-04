@@ -59,6 +59,7 @@
           - helm
           - kubectl
           - npm
+          - aws-cli-v2
           - sops
           #games
           - gamemode
