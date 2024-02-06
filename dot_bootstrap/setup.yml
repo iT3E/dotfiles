@@ -62,6 +62,7 @@
           - aws-cli-v2
           - sops
           - direnv
+          - fluxcd
           #games
           - gamemode
           - steam
