@@ -31,3 +31,45 @@ chezmoi age decrypt --output "~/.config/chezmoi/key.txt" --passphrase key.txt.ag
 ```
 
 - Encrypted files must be managed outside of `~/.local/share/chezmoi`,then, once modified, added back using `chezmoi add --encrypt ~/.config/file_name`
+
+### SSH Keys
+
+Best practice is to have separate SSH keys for each system, rather than share the keys via a dotfile repository.
+In order to bootstrap a new system with the required keys, do the following:
+
+#### Step 1
+
+Create the keypair
+
+```bash
+ssh-keygen -t ed25519 -C "it3E@<device_name>"
+```
+
+#### Step 2
+
+Set up multiple SSH profiles by creating/modifying `~/.ssh/config` Note the slightly differing 'Host' values:
+
+```bash
+# Default GitHub
+Host github.com-iT3E
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+
+# Work GitHub
+Host github.com-work
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_work
+```
+
+#### Step 3
+
+Clone git repositories using the 'Host' portion like so:
+
+```bash
+git clone git@github.com-work:Work-Org/repo-name.git
+git clone git@github.com-iT3E:iT3E/repo-name.git
+```
+
+If existing repositories need to be modified, this can be done in `.git/config`
