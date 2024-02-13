@@ -29,3 +29,5 @@ chezmoi add ~/.config/nvim/ #..or other file/folder name
 ```bash
 chezmoi age decrypt --output "~/.config/chezmoi/key.txt" --passphrase key.txt.age > ~/.config/chezmoi/key.txt
 ```
+
+- Encrypted files must be managed outside of `~/.local/share/chezmoi`,then, once modified, added back using `chezmoi add --encrypt ~/.config/file_name`
