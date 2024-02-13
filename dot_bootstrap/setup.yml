@@ -37,6 +37,7 @@
         - oh-my-zsh-git
         - pokemon-colorscripts-git
         - hyprdots-ctl
+        - immersed
 
     - name: Install packages
       pacman:
