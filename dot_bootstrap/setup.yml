@@ -64,6 +64,7 @@
           - sops
           - direnv
           - fluxcd
+          - age
           #games
           - gamemode
           - steam
