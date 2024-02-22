@@ -11,15 +11,36 @@
   tasks:
     - name: Get my user
       ansible.builtin.set_fact:
-        remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+        remote_regular_user: {{ "{{" }} ansible_env.SUDO_USER or ansible_user_id {{ "}}" }}
 
     - name: Check install packages
       ansible.builtin.command: pacman -Qm
       register: installed_packages
 
-    - name: Install AUR packages
+        
+{{- if eq .chezmoi.hostname "xps-arch" }}
+    - name: Install AUR packages - xps-arch
       become: false
-      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ item }}"
+      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}" }}"
+      when: item not in installed_packages.stdout
+      with_items:
+        - test-package
+
+{{- else if eq .chezmoi.hostname "desktop-arch" }}
+    - name: Install AUR packages - desktop-arch
+      become: false
+      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}" }}"
+      when: item not in installed_packages.stdout
+      with_items:
+           #games
+          - gamemode
+          - steam
+          - nvidia-dkms
+{{- end }}
+
+    - name: Install AUR packages - default
+      become: false
+      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}" }}"
       when: item not in installed_packages.stdout
       with_items:
         - google-chrome
@@ -65,10 +86,6 @@
           - direnv
           - fluxcd
           - age
-          #games
-          - gamemode
-          - steam
-          - nvidia-dkms
           #hyprland-rice
           - pipewire
           - pipewire-alsa
@@ -120,7 +137,7 @@
 
     - name: Enable and start services
       ansible.builtin.service:
-        name: "{{ item }}"
+        name: {{ "{{" }} item {{ "}}" }}
         enabled: yes
         state: started
       loop:
@@ -130,7 +147,7 @@
 
     - name: Change shell to zsh
       ansible.builtin.user:
-        name: "{{ remote_regular_user }}"
+        name: {{ "{{" }} remote_regular_user {{ "}}" }}
         shell: /usr/bin/zsh
 
     - name: Install Flatpak packages
@@ -152,18 +169,18 @@
 
     - name: Change default shell to zsh for the user
       user:
-        name: "{{ ansible_user_id }}"
+        name: {{ "{{" }} ansible_user_id {{ "}}" }}
         shell: /usr/bin/zsh
 
     - name: Ensure fonts directory
       ansible.builtin.file:
-        path: "~{{ remote_regular_user }}/.local/share/fonts"
+        path: "~{{ "{{" }} remote_regular_user {{ "}}" }}/.local/share/fonts"
         state: directory
         mode: "0755"
-        owner: "{{ remote_regular_user }}"
+        owner: {{ "{{" }} remote_regular_user {{ "}}" }}
 
     - name: Check if JetBrains Mono exists
-      ansible.builtin.shell: "ls ~{{ remote_regular_user }}/.local/share/fonts/JetBrainsMonoNerd*FontMono*"
+      ansible.builtin.shell: "ls ~{{ "{{" }} remote_regular_user {{ "}}" }}/.local/share/fonts/JetBrainsMonoNerd*FontMono*"
       register: jetbrains_mono_exists
       ignore_errors: true
       changed_when: false
@@ -172,10 +189,10 @@
       when: jetbrains_mono_exists is failed
       ansible.builtin.unarchive:
         src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
-        dest: "~{{ remote_regular_user }}/.local/share/fonts/"
+        dest: "~{{ "{{" }} remote_regular_user {{ "}}" }}/.local/share/fonts/"
         remote_src: true
         mode: "0755"
-        owner: "{{ remote_regular_user }}"
+        owner: {{ "{{" }} remote_regular_user {{ "}}" }}
 
     - name: Clone zsh-256color plugin
       ansible.builtin.git:
@@ -197,3 +214,4 @@
         dest: "/usr/share/oh-my-zsh/custom/plugins/zsh-autosuggestions"
         version: "HEAD" # You could specify a branch or tag if needed
       become: yes
+
