@@ -26,6 +26,14 @@
       with_items:
 
 {{- else if eq .chezmoi.hostname "desktop-arch" }}
+
+    - name: Install AUR packages - default
+      become: false
+      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}" }}"
+      when: item not in installed_packages.stdout
+      with_items:
+        - proton-ge-custom
+
     - name: Install AUR packages - desktop-arch
       pacman:
         name:
