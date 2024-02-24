@@ -73,3 +73,8 @@ git clone git@github.com-iT3E:iT3E/repo-name.git
 ```
 
 If existing repositories need to be modified, this can be done in `.git/config`
+
+### Tmux
+
+The tmux plugin manager is kept in these dot files. To initialize all other plugins, run the following in tmux:
+`<c-a><c-shift-I>`
