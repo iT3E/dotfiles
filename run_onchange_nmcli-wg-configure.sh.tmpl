@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# nmcli-wg-desktop.yml.tmpl hash {{ include "dot_bootstrap/encrypted_nmcli-wg-desktop.yml.age" | sha256sum }}
+# nmcli-wg-xps.yml.tmpl hash {{ include "dot_bootstrap/encrypted_nmcli-wg-xps.yml.age" | sha256sum }}
+{{- if eq .chezmoi.hostname "desktop-arch" }}
+ansible-playbook ~/.bootstrap/nmcli-wg-desktop.yml --ask-become-pass
+{{- else if eq .chezmoi.hostname "xps-arch" }}
+ansible-playbook ~/.bootstrap/nmcli-wg-xps.yml --ask-become-pass
+{{- end }}
+
+echo "Ansible run on change complete for nmcli-wg."
