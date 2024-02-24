@@ -16,11 +16,12 @@
 
         
 {{- if eq .chezmoi.hostname "xps-arch" }}
-    - name: Install AUR packages - xps-arch
-      become: false
-      ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}"}}"
-      when: item not in installed_packages.stdout
-      with_items:
+    # - name: Install AUR packages - xps-arch
+    #   become: false
+    #   ansible.builtin.command: "yay --noconfirm --noprogressbar --needed --sync {{ "{{" }} item {{ "}}"}}"
+    #   when: item not in installed_packages.stdout
+    #   with_items:
+    #     - 
 
 {{- else if eq .chezmoi.hostname "desktop-arch" }}
 
