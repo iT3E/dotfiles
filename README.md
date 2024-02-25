@@ -20,7 +20,7 @@ This is my dotfiles repository that is managed by Chezmoi and Ansible
 chezmoi add ~/.config/nvim/ #..or other file/folder name
 ```
 
-### Encryption
+## Encryption
 
 - [Chezmoi encrypted files should only require a passphrase entered once after following this guide](https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/)
 - The following command was used to manually put the private key `key.txt`
@@ -32,7 +32,7 @@ chezmoi age decrypt --output "~/.config/chezmoi/key.txt" --passphrase key.txt.ag
 
 - Encrypted files must be managed outside of `~/.local/share/chezmoi`,then, once modified, added back using `chezmoi add --encrypt ~/.config/file_name`
 
-### SSH Keys
+## SSH Keys
 
 Best practice is to have separate SSH keys for each system, rather than share the keys via a dotfile repository.
 In order to bootstrap a new system with the required keys, do the following:
@@ -74,7 +74,7 @@ git clone git@github.com-iT3E:iT3E/repo-name.git
 
 If existing repositories need to be modified, this can be done in `.git/config`
 
-### Tmux
+## Tmux
 
 The tmux plugin manager is kept in these dot files. To initialize all other plugins, run the following in tmux:
 `<c-a><shift-I>`
