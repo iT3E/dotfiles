@@ -12,6 +12,16 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "terraform",
         "hcl",
+        "python",
+        "html",
+        "yaml",
+        "bash",
+        "json",
+        "javascript",
+        "markdown",
+        "markdown_inline",
+        "regex",
+        "lua",
       })
     end
   end,
