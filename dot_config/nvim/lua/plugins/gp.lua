@@ -3,6 +3,7 @@ return {
   config = function()
     require("gp").setup({
       openai_api_key_cmd = "bw get password OAI_API_KEY",
+      openai_api_key = { "bw", "get", "password", "OAI_API_KEY" },
       -- default command agents (model + persona)
       -- name, model and system_prompt are mandatory fields
       -- to use agent for chat set chat = true, for command set command = true
